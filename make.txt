@@ -1,0 +1,18 @@
+.PHONY: all clean install uninstall
+	
+all: Module18
+	
+clean:
+	rm -rf Module18 *.o
+main.o: main.cpp
+	g++ -c -o main.o main.cpp
+Message.o: Message.h
+	g++ -c -o Message.o Message.h
+User.o: Message.h
+	g++ -c -o User.o User.h
+Module18: main.o Message.o User.o
+	g++ -o hello main.o Message.o User.o
+install:
+	install ./Module18 /usr/local/bin
+uninstall:
+	rm -rf /usr/local/bin/Module18
